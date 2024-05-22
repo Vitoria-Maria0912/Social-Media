@@ -25,6 +25,29 @@ button {
     margin-top: 20px;
 }
 
-#addImage {
+#addAphoto {
+    display: none;
+    margin-top: 20px;
+}
+
+#putTheImage{
+    display: none;
+}
+
+#congratulations {
+    display: none;
+}
+
+#profile {
+    display: none;
+    background-color: ghostwhite;
+}
+
+#sendInformation{
+    display: none;
+    margin-top: 20px;
+}
+
+.send {
     margin-top: 20px;
 }
