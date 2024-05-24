@@ -1,9 +1,11 @@
+import Profile from "./Profile.js";
+
 /**
- * Shows the profile (if the form wasn't answered the default)
+ * Shows the profile (if the form wasn't answered, the default)
  */
 const profile = document.getElementById("profile");
 profile.addEventListener("click", () => {
-    window.open("profile.html", "_blank");
+    document.getElementById("socialMedia").style.display = "block"
 });
 
 /**
@@ -19,8 +21,7 @@ createProfile.addEventListener("submit", function(event) {
 
     (yesOption.checked) ? (document.getElementById("sendInformation").style.display = "block",
                            createProfile.style.display = "none") :
-    (noOption.checked) ? (document.getElementById("profile").style.display = "block",
-                          document.getElementById("profile").textContent = "👉🏽 Click here to see an example 👈🏽")
+    (noOption.checked) ? (document.getElementById("profile").style.display = "block")
     : alert("Select an option!");
 });
 
@@ -36,10 +37,23 @@ sendInformation.addEventListener("submit", function(event) {
     const nickname = document.getElementById("nickname");
     const biografy = document.getElementById("biografy");
 
+    let changedProfile = new Profile(name.value, nickname.value, biografy.value);
+
     (validName(name) && validNickname(nickname)) ? (document.getElementById("addAphoto").style.display = "block",
-                                                    document.getElementById("profile").style.display = "block", 
-                                                    document.getElementById("profile").textContent = "👉🏽 Click here to see a preview 👈🏽"): null;
+                                                    document.getElementById("profile").style.display = "block",
+                                                    setInformations(changedProfile)
+                                                ): null;
 });
+
+/**
+ * 
+ * @param Profile with name, nickname and biografy 
+ */
+function setInformations(Profile){
+    document.getElementById("profileName").textContent = Profile.getName();
+    document.getElementById("profileNickname").textContent = Profile.getNickname();
+    document.getElementById("profileBiografy").textContent = Profile.getBiografy();
+}
 
 /**
  * Verified if the attribute name isn't empty, composed by numbers or special caracters.
@@ -81,10 +95,13 @@ addAphoto.addEventListener("submit", function(event) {
     const noOption = document.getElementById("no");
 
     (yesOption.checked) ? (document.getElementById("putTheImage").style.display = "block") :
-    (noOption.checked) ? null
-    : alert("Select an option!");
+    (noOption.checked) ? document.getElementById("congratulations").style.display = "block" :
+    alert("Select an option!");
 });
 
+/**
+ * Add a profile photo 
+ */
 const putTheImage = document.getElementById("putTheImage");
 putTheImage.addEventListener("submit", function(event) {
 
@@ -92,7 +109,9 @@ putTheImage.addEventListener("submit", function(event) {
 
     const linkImage = document.getElementById("image");
 
-    (verifiedLikability(linkImage)) ? document.getElementById("congratulations").style.display = "block": null;
+    (verifiedLikability(linkImage)) ? (document.getElementById("congratulations").style.display = "block",
+                                        document.getElementById("profilePicture").src = linkImage.value)
+                                       : null;
 });
 
 /**
@@ -105,3 +124,21 @@ function verifiedLikability(link) {
     (link.value === "") ? alert("Link is required!") : isValid = true;
     return isValid;
 }
+
+/**
+ * Increments following one by ony
+ */
+const follow = document.getElementById("follow");
+follow.addEventListener("click", () => {
+    let following = Number(document.getElementById("following").textContent);
+    document.getElementById("following").textContent = following + 1;
+});
+
+/**
+ * Decrements following one by ony
+ */
+const unfollow = document.getElementById("unfollow");
+unfollow.addEventListener("click", () => {
+    let unfollowing = Number(document.getElementById("following").textContent);
+    document.getElementById("following").textContent = unfollowing - 1;
+});

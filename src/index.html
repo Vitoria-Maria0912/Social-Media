@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Profile</title>
+</head>
+<body>
+    <section id="forms">
+
+        <form id="createProfile">
+            <h4>Do you want to create a perfil? 🤔</h4>
+            <input type="radio" id="yesOption" name="option" value="yes">
+            <label for="yesOption">Yes</label>
+            <input type="radio" id="noOption" name="option" value="no">
+            <label for="noOption">No</label> <br>
+            <input class="send" type="submit" value="Submit">
+        </form>
+
+        <form id="sendInformation">
+            <h3>Let's do it ✍🏽</h3>
+            <label for="name"> Write your perfil name: </label>
+            <input type="text" id="name" name="name" value=""> <p></p>
+            <label for="nickname"> Write your nickname: </label> 
+            <input type="text" id="nickname" name="nickname" value=""><p></p>
+            <label for="biografy"> Write your biografy: </label> 
+            <input type="text" id="biografy" name="biografy" value=""> <br>
+            <input class="send" type="submit" value="Submit">
+        </form>    
+
+        <form id="addAphoto">
+            <h4>To finish you Social Media profile, do you want to add a photo? </h4>
+            <input type="radio" id="yes" name="option" value="yes">
+            <label for="yes"> Yes </label>
+            <input type="radio" id="no" name="option" value="no">
+            <label for="no"> No </label> <br>
+            <input class="send" type="submit" value="Submit">
+        </form>        
+
+        <form id="putTheImage">
+            <h3>Let's add 📸</h3>
+            <label for="image">Write the link of your image: </label>
+            <input type="text" id="image" name="image" value="">
+            <input type="submit" value="Submit">
+        </form>
+
+        <h3 id="congratulations">Congratulations, you finish you profile! 🥳</h3>
+        <button id="profile">👉🏽 Click here to see how it's turning out 👈🏽</button>
+    </section>
+    <p></p>
+    <!-- Revisar toda esta seção-->
+    <section id="socialMedia">
+        <a href="https://mimo.org">Home</a>
+        <a href="https://mimo.org">DMs</a>
+        <a href="https://mimo.org">Logout</a>
+        <br>
+        <img id="profilePicture" src="https://mimo.app/i/sparkles.png">
+        <h1 id="profileName">Vitória Maria</h1>
+        <h3 id="profileNickname">@ruivinha0912</h3>
+        <p id="profileBiografy">
+        <em>Freelance maker and dabbler. Love building things. Currently working
+            on this <a href="https://mock.getmimo.com">neat little project</a>.</em>
+        </p>
+        <p><strong>Where: </strong> Livramento - PB</p>
+        <p><strong>Webpage: </strong><a
+            href="https://mock.getmimo.com">socialmedia.com</a>
+        </p>
+        <a href="https://mock.getmimo.com"><spam id="posts">274</spam> Posts</a>
+        <a href="https://mock.getmimo.com"><spam id="followers">500</spam> Followers</a>
+        <a href="https://mock.getmimo.com"><spam id="following">174</spam> Following</a><br>
+        <button id="reachOut"><strong>Reach out</strong></button>
+        <button id="follow"><strong>Follow</strong></button>
+        <button id="unfollow"><strong>Unfollow</strong></button>
+    </section>
+    <script type="module" src="app.js"></script>
+</body>
+</html>

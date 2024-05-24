@@ -10,7 +10,7 @@ img {
 }
 
 body {
-    background-color: #F9FFFB;
+    background-color: #ffffff;
     font-family: sans-serif;
 }
 
@@ -38,6 +38,7 @@ button {
     display: none;
 }
 
+/* mudar nome*/
 #profile {
     display: none;
     background-color: ghostwhite;
@@ -50,4 +51,15 @@ button {
 
 .send {
     margin-top: 20px;
+}
+
+#socialMedia{
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 0%;
+    width: 50%;
+    height: 100%;
+    background-color: #4c00ff35;
+    padding: 20px 20px 20px 20px;
 }
