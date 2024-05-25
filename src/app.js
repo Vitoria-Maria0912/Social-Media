@@ -1,18 +1,30 @@
-import Profile from "./Profile.js";
 
 /**
- * Shows the profile (if the form wasn't answered, the default)
+ * Shows the profile (if the form wasn't answered yet, the default)
  */
 const profile = document.getElementById("profile");
-profile.addEventListener("click", () => {
-    document.getElementById("socialMedia").style.display = "block"
+const btnShowProfile = document.getElementById("showProfile");
+btnShowProfile.addEventListener("click", () => {
+    btnShowProfile.style.display = "none";
+    btnHideProfile.style.display = "block";
+    profile.style.display = "block";
+});
+
+/**
+ * Hides the profile (if the form wasn't answered yet, the default)
+ */
+const btnHideProfile = document.getElementById("hideProfile");
+btnHideProfile.addEventListener("click", () => {
+    btnHideProfile.style.display = "none";
+    btnShowProfile.style.display = "block";
+    profile.style.display = "none";
 });
 
 /**
  * Form who asks if the user want to create a profile
  */
-const createProfile = document.getElementById("createProfile");
-createProfile.addEventListener("submit", function(event) {
+const btnCreateProfile = document.getElementById("createProfile");
+btnCreateProfile.addEventListener("submit", function(event) {
 
     event.preventDefault();
 
@@ -20,8 +32,8 @@ createProfile.addEventListener("submit", function(event) {
     const noOption = document.getElementById("noOption");
 
     (yesOption.checked) ? (document.getElementById("sendInformation").style.display = "block",
-                           createProfile.style.display = "none") :
-    (noOption.checked) ? (document.getElementById("profile").style.display = "block")
+                           btnCreateProfile.style.display = "none") :
+    (noOption.checked) ? (btnShowProfile.style.display = "block")
     : alert("Select an option!");
 });
 
@@ -37,22 +49,27 @@ sendInformation.addEventListener("submit", function(event) {
     const nickname = document.getElementById("nickname");
     const biografy = document.getElementById("biografy");
 
-    let changedProfile = new Profile(name.value, nickname.value, biografy.value);
+    let changedProfile = {
+        name: name.value,
+        nickname: "@" + nickname.value,
+        biografy: biografy.value
+    };
 
     (validName(name) && validNickname(nickname)) ? (document.getElementById("addAphoto").style.display = "block",
-                                                    document.getElementById("profile").style.display = "block",
+                                                    btnShowProfile.style.display = "block",
+                                                    btnShowProfile.textContent = "👉🏽 Click here to see how it's turning out 👈🏽",
                                                     setInformations(changedProfile)
                                                 ): null;
 });
 
 /**
- * 
+ * Updates the profile informations
  * @param Profile with name, nickname and biografy 
  */
 function setInformations(Profile){
-    document.getElementById("profileName").textContent = Profile.getName();
-    document.getElementById("profileNickname").textContent = Profile.getNickname();
-    document.getElementById("profileBiografy").textContent = Profile.getBiografy();
+    document.getElementById("profileName").textContent = Profile.name;
+    document.getElementById("profileNickname").textContent = Profile.nickname;
+    document.getElementById("profileBiografy").textContent = Profile.biografy;
 }
 
 /**
