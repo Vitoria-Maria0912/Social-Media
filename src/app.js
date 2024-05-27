@@ -1,9 +1,21 @@
+/**
+ * Creates all the necessaries constants 
+ */
+const profile = document.getElementById("profile");
+const btnShowProfile = document.getElementById("showProfile");
+const btnHideProfile = document.getElementById("hideProfile");
+const btnCreateProfile = document.getElementById("createProfile");
+const sendInformation = document.getElementById("sendInformation");
+const addAphoto = document.getElementById("addAphoto");
+const putTheImage = document.getElementById("putTheImage");
+const congratulations = document.getElementById("congratulations");
+
+const follow = document.getElementById("follow");
+const unfollow = document.getElementById("unfollow");
 
 /**
  * Shows the profile (if the form wasn't answered yet, the default)
  */
-const profile = document.getElementById("profile");
-const btnShowProfile = document.getElementById("showProfile");
 btnShowProfile.addEventListener("click", () => {
     btnShowProfile.style.display = "none";
     btnHideProfile.style.display = "block";
@@ -13,7 +25,6 @@ btnShowProfile.addEventListener("click", () => {
 /**
  * Hides the profile (if the form wasn't answered yet, the default)
  */
-const btnHideProfile = document.getElementById("hideProfile");
 btnHideProfile.addEventListener("click", () => {
     btnHideProfile.style.display = "none";
     btnShowProfile.style.display = "block";
@@ -23,7 +34,6 @@ btnHideProfile.addEventListener("click", () => {
 /**
  * Form who asks if the user want to create a profile
  */
-const btnCreateProfile = document.getElementById("createProfile");
 btnCreateProfile.addEventListener("submit", function(event) {
 
     event.preventDefault();
@@ -31,8 +41,8 @@ btnCreateProfile.addEventListener("submit", function(event) {
     const yesOption = document.getElementById("yesOption");
     const noOption = document.getElementById("noOption");
 
-    (yesOption.checked) ? (document.getElementById("sendInformation").style.display = "block",
-                           btnCreateProfile.style.display = "none") :
+    (yesOption.checked) ? (sendInformation.style.display = "block",
+                           btnCreateProfile.style.display = "none", btnShowProfile.style.display = "block") :
     (noOption.checked) ? (btnShowProfile.style.display = "block")
     : alert("Select an option!");
 });
@@ -40,7 +50,6 @@ btnCreateProfile.addEventListener("submit", function(event) {
 /**
  * Send the information (name, nickname and biografy) to create a new profile
  */
-const sendInformation = document.getElementById("sendInformation");
 sendInformation.addEventListener("submit", function(event) {
 
     event.preventDefault();
@@ -55,8 +64,7 @@ sendInformation.addEventListener("submit", function(event) {
         biografy: biografy.value
     };
 
-    (validName(name) && validNickname(nickname)) ? (document.getElementById("addAphoto").style.display = "block",
-                                                    btnShowProfile.style.display = "block",
+    (validName(name) && validNickname(nickname)) ? (addAphoto.style.display = "block",
                                                     btnShowProfile.textContent = "👉🏽 Click here to see how it's turning out 👈🏽",
                                                     setInformations(changedProfile)
                                                 ): null;
@@ -103,7 +111,6 @@ function validNickname(HTMLElement) {
 /**
  * Form who asks if the user want to add a photo to profile
  */
-const addAphoto = document.getElementById("addAphoto");
 addAphoto.addEventListener("submit", function(event) {
 
     event.preventDefault();
@@ -111,23 +118,26 @@ addAphoto.addEventListener("submit", function(event) {
     const yesOption = document.getElementById("yes");
     const noOption = document.getElementById("no");
 
-    (yesOption.checked) ? (document.getElementById("putTheImage").style.display = "block") :
-    (noOption.checked) ? document.getElementById("congratulations").style.display = "block" :
+    (yesOption.checked) ? (putTheImage.style.display = "block") :
+    (noOption.checked) ? (addAphoto.style.display = "none", 
+                          btnShowProfile.textContent = "👉🏽 Click here to see the result 👈🏽",
+                          congratulations.style.display = "block") :
     alert("Select an option!");
 });
 
 /**
  * Add a profile photo 
  */
-const putTheImage = document.getElementById("putTheImage");
 putTheImage.addEventListener("submit", function(event) {
 
     event.preventDefault();
 
     const linkImage = document.getElementById("image");
 
-    (verifiedLikability(linkImage)) ? (document.getElementById("congratulations").style.display = "block",
-                                        document.getElementById("profilePicture").src = linkImage.value)
+    (verifiedLikability(linkImage)) ? (congratulations.style.display = "block",
+                                       sendInformation.style.display = "none",
+                                       btnShowProfile.textContent = "👉🏽 Click here to see the result 👈🏽",
+                                       document.getElementById("profilePicture").src = linkImage.value)
                                        : null;
 });
 
@@ -145,7 +155,6 @@ function verifiedLikability(link) {
 /**
  * Increments following one by ony
  */
-const follow = document.getElementById("follow");
 follow.addEventListener("click", () => {
     let following = Number(document.getElementById("following").textContent);
     document.getElementById("following").textContent = following + 1;
@@ -154,7 +163,6 @@ follow.addEventListener("click", () => {
 /**
  * Decrements following one by ony
  */
-const unfollow = document.getElementById("unfollow");
 unfollow.addEventListener("click", () => {
     let unfollowing = Number(document.getElementById("following").textContent);
     document.getElementById("following").textContent = unfollowing - 1;
