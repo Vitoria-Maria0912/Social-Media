@@ -31,6 +31,10 @@ btnHideProfile.addEventListener("click", () => {
     profile.style.display = "none";
 });
 
+function show_hideProfile(){
+    (profile.style.display === "block") ? btnHideProfile.style.display = "block" : btnShowProfile.style.display = "block"
+}
+
 /**
  * Form who asks if the user want to create a profile
  */
@@ -41,8 +45,8 @@ btnCreateProfile.addEventListener("submit", function(event) {
     const yesOption = document.getElementById("yesOption");
     const noOption = document.getElementById("noOption");
 
-    (yesOption.checked) ? (sendInformation.style.display = "block",
-                           btnCreateProfile.style.display = "none", btnShowProfile.style.display = "block") :
+    (yesOption.checked) ? (sendInformation.style.display = "block", show_hideProfile(),
+                           btnCreateProfile.style.display = "none") :
     (noOption.checked) ? (btnShowProfile.style.display = "block")
     : alert("Select an option!");
 });
@@ -64,8 +68,10 @@ sendInformation.addEventListener("submit", function(event) {
         biografy: biografy.value
     };
 
-    (validName(name) && validNickname(nickname)) ? (addAphoto.style.display = "block",
+    (validName(name) && validNickname(nickname)) ? (sendInformation.style.display = "none", 
+                                                    addAphoto.style.display = "block", 
                                                     btnShowProfile.textContent = "👉🏽 Click here to see how it's turning out 👈🏽",
+                                                    show_hideProfile(),
                                                     setInformations(changedProfile)
                                                 ): null;
 });
@@ -118,8 +124,8 @@ addAphoto.addEventListener("submit", function(event) {
     const yesOption = document.getElementById("yes");
     const noOption = document.getElementById("no");
 
-    (yesOption.checked) ? (putTheImage.style.display = "block") :
-    (noOption.checked) ? (addAphoto.style.display = "none", 
+    (yesOption.checked) ? (addAphoto.style.display = "none", putTheImage.style.display = "block") :
+    (noOption.checked) ? (addAphoto.style.display = "none", show_hideProfile(),
                           btnShowProfile.textContent = "👉🏽 Click here to see the result 👈🏽",
                           congratulations.style.display = "block") :
     alert("Select an option!");
@@ -134,8 +140,8 @@ putTheImage.addEventListener("submit", function(event) {
 
     const linkImage = document.getElementById("image");
 
-    (verifiedLikability(linkImage)) ? (congratulations.style.display = "block",
-                                       sendInformation.style.display = "none",
+    (verifiedLikability(linkImage)) ? (putTheImage.style.display = "none", congratulations.style.display = "block",
+                                       sendInformation.style.display = "none", show_hideProfile(),
                                        btnShowProfile.textContent = "👉🏽 Click here to see the result 👈🏽",
                                        document.getElementById("profilePicture").src = linkImage.value)
                                        : null;

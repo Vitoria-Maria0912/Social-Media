@@ -39,6 +39,10 @@ button {
     margin-top: 20px;
 }
 
+#forms {
+    padding-left: 15px;
+}
+
 #profile{
     display: none;
     position: fixed;
@@ -48,4 +52,8 @@ button {
     height: 100%;
     background-color: #4c00ff35;
     padding: 20px 20px 20px 20px;
+}
+
+#profileBiografy{
+    width: 95%;
 }
