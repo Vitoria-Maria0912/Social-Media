@@ -61,11 +61,13 @@ sendInformation.addEventListener("submit", function(event) {
     const name = document.getElementById("name");
     const nickname = document.getElementById("nickname");
     const biografy = document.getElementById("biografy");
+    const city = document.getElementById("city");
 
     let changedProfile = {
         name: name.value,
         nickname: "@" + nickname.value,
-        biografy: biografy.value
+        biografy: biografy.value,
+        city: city.value
     };
 
     (validName(name) && validNickname(nickname)) ? (sendInformation.style.display = "none", 
@@ -84,6 +86,7 @@ function setInformations(Profile){
     document.getElementById("profileName").textContent = Profile.name;
     document.getElementById("profileNickname").textContent = Profile.nickname;
     document.getElementById("profileBiografy").textContent = Profile.biografy;
+    document.getElementById("profileLocal").textContent = Profile.city;
 }
 
 /**
